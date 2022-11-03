@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.calendarCont {
+  border: 2px solid #015fcc; border-radius: 6px;
+}
+.calendarCont,
+.calendarCont .DayPicker,
+.calendarCont .DayPicker .DayPicker-Month {
+  width: 100%;
+}
+.mapDiv{height: 470px;}
+.editorContainer{height:500px;}
+.priceField {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+
+.loaderPosition {
+  height: 100%;
+  /* width: 100%; */
+  background: #eeee;
+  position: fixed;
+  top: 0;
+  /* left: 0; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  /* left: 250px; */
+  width:100%;
+}
+
+.headerIcons{margin: 0; padding: 0; list-style: none; display: flex;}
+.headerIcons li{margin-right: 20px;}
+.Contborder{border:2px solid #a9d18e;box-shadow:3px 3px 5px rgba(0, 0, 0, 0.46); margin-bottom: 20px;}

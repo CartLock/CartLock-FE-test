@@ -1,0 +1,562 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  float: left;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.MuiListItemSecondaryAction-root {
+  top: 50%;
+  right: 150px;
+  position: absolute;
+  transform: translateY(-50%);
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #5e8047;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #5e8047;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.rowtime {
+  margin-left: -250px;
+}
+
+/*Added By Saurav Satpathy
+---> For login Page
+*/
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 230px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #5e8047; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav p {
+  padding: 6px 8px 6px 16px;
+  font-size: 25px;
+  color: #1b330a;
+  display: block;
+  margin-left: 12%;
+  font-weight: bold;
+}
+.sidenav small {
+  color: #1b330a;
+  text-align: center;
+  font-size: small;
+  margin-left: 21%;
+   padding-top: 38%; 
+  font-style: italic;
+  font-size: medium;
+   margin-top: -19%; 
+}
+
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 10px;
+  margin-top: -53px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    padding-right: 834px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.container h1 {
+  padding: 6px 8px 6px 16px;
+  margin-top: 5%;
+  font-size: 25px;
+  color: #5e8047;
+  display: block;
+  text-align: left;
+  margin-left: 37%;
+}
+.container i {
+  padding: 6px 8px 6px 16px;
+  font-size: 18px;
+  color: #1b330a;
+  display: block;
+  text-align: left;
+  margin-left: 42%;
+  margin-top: -32px;
+}
+.container img {
+  width: 50px;
+  height: 60px;
+  margin-left: 37%;
+  border-radius: 90%;
+}
+
+/*Added By Saurav Satpathy
+---> For  dash board Page
+*/
+#adminCSS{
+  
+  width: 26rem;
+
+}
+#userNav {
+  border: 2px solid hsl(154, 82%, 37%);
+  width: 90%;
+  border-radius: 12px;
+  margin-top: 20%;
+  border-color: #1b330a;
+  width: 111%;
+  margin-left: -5%;
+  /* border: medium; */
+  border-width: 3px;
+  /* background-color: rebeccapurple; */
+  background-color: #a9d18e;
+  margin-top: 31%;
+  padding-top: 5px;
+}
+.userBar h2 {
+  color: rgb(31, 85, 20);
+}
+#deviceNav {
+  border: 2px solid hsl(154, 82%, 37%);
+  width: 90%;
+  border-radius: 12px;
+  margin-top: -23%;
+  border-color: #1b330a;
+  width: 111%;
+  margin-left: -5%;
+  /* border: medium; */
+  border-width: 3px;
+  /* background-color: rebeccapurple; */
+  background-color: #a9d18e;
+  padding-top: 4px;
+}
+#suppotNav {
+  border: 2px solid hsl(154, 82%, 37%);
+  width: 90%;
+  border-radius: 12px;
+  margin-top: -23%;
+  border-color: #1b330a;
+  width: 111%;
+  margin-left: -5%;
+  /* border: medium; */
+  border-width: 3px;
+  /* background-color: rebeccapurple; */
+  background-color: #a9d18e;
+  padding-top: 4px;
+}
+
+#settingNav {
+  border: 2px solid hsl(154, 82%, 37%);
+  width: 90%;
+  border-radius: 12px;
+  margin-top: -23%;
+  border-color: #1b330a;
+  width: 111%;
+  margin-left: -5%;
+  /* border: medium; */
+  border-width: 3px;
+  /* background-color: rebeccapurple; */
+  background-color: #a9d18e;
+  padding-top: 4px;
+}
+.userBar h2 {
+  color: rgb(31, 85, 20);
+}
+.deviceBar h2 {
+  color: rgb(31, 85, 20);
+}
+.serviceBar h2 {
+  color: rgb(31, 85, 20);
+}
+.settingBar h2 {
+  color: rgb(31, 85, 20);
+}
+.logoutBar h2 {
+  color: rgb(31, 85, 20);
+}
+.logoutBar {
+  margin-top: 5%;
+}
+#headText {
+}
+.logoutBar img {
+  width: 50px;
+  height: 60px;
+  margin-left: 0%;
+  border-radius: 210%;
+  margin-top: 9%;
+}
+
+h2#dashboard_home {
+  color: rgb(31, 85, 20);
+  margin-top: -5%;
+  padding-right: 12%;
+}
+
+.card-stats {
+  border: 2px solid #5e8047;
+  border-top: 20px solid #5e8047;
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 46%);
+}
+.card-stats .card-body {
+  padding: 48px 45px;
+  width: 18rem;
+}
+
+/* Used to adjust the dashboard widget size */
+.dahboardrow {
+  padding: 210px;
+  position: fixed;
+  margin-top: -216px;
+}
+/*Gest User*/
+
+/*Dark mode enable*/
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  /* background-color: #282c34; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /* color: white; */
+}
+
+.App-link {
+  /* color: #61dafb; */
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/*add user*/
+.adduserlabel {
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 0px !important;
+  font-weight: bold;
+  color: #1b330a;
+}
+.userUpdateButton {
+  padding-left: 2%;
+  margin-left: 88%;
+  margin-top: 10px;
+  white-space: nowrap;
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  width: -38px;
+}
+.ticketUpdateButton{
+  padding-left: 10%;
+  /* margin-left: 88%; */
+  margin-top: 10px;
+  white-space: nowrap;
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  width: -38px;
+}
+.userUpdateButtonTest {
+  padding-left: 13%;
+  margin-left: 5%;
+  width: 59%;
+  white-space: nowrap;
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  margin-top: 5%;
+}
+
+
+.addUserCoutryCode {
+  padding-top: 14px;
+}
+.modifyUser {
+  padding-top: 15px;
+  padding-left: 0px;
+}
+
+.updateDeviceSecondRow {
+  padding-top: 33px;
+}
+.updateDeviceThirdRow {
+  padding-top: 30px;
+  margin-left: -27px;
+}
+.deviceUpdateButton {
+  padding-left: 70%;
+  padding-top: 10px;
+}
+.suuportRefresh {
+  margin-top: 5px;
+  margin-left: 38%;
+}
+.updateSupport {
+  height: 250px;
+  border-color: #5e8047;
+  border-width: 2px;
+}
+.submitBtn {
+  background-color: #a9d18e;
+}
+.restBTn{
+  background-color: #a9d18e;
+  width: 100%;
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+}
+.headerSunmenu {
+  background-color: #5e8047;
+}
+
+/* UserPages CSS added On 04/07/2022 */
+.addUserBtn {
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  margin-left: 68%;
+  margin-top: -4px;
+}
+.addCompanyBtn {
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  
+  margin-top: -4px;
+}
+.createUserBtn {
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  margin-left: 87%;
+  margin-top: 8px;
+}
+.createDeviceBtn {
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  margin-left: 85%;
+  margin-top: 8px;
+  width: 14%;
+}
+.addTicketBtn {
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  margin-left: 85%;
+  margin-top: 8px;
+  width: 14%;
+}
+.supportRefresh {
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  margin-left: 25%;
+  margin-top: 5px;
+}
+.createCompany {
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  margin-left: 83%;
+  margin-top: 9px;
+  /* height: 2px; */
+  height: 50px;
+}
+.updateCompany {
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  margin-left: 88%;
+  margin-top: 9px;
+  height: 45px;
+}
+
+.testkoti {
+  margin-top: 6%;
+}
+.sauravtest {
+  white-space: nowrap;
+}
+.adduserCheckBox {
+  margin-top: 13%;
+}
+.isCompanyActiveRadio {
+  margin-left: 72%;
+  margin-top: 4%;
+}
+.isTicketActiveRadio {
+  margin-left: 72%;
+  margin-top: 2%;
+}
+.genearteCompanyId{
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+  /* margin-left: 88%;
+  margin-top: 9px;
+  height: 45px; */
+}
+.MuiButton-containedSizeLarge {
+  padding: 7px 22px;
+  font-size: 0.9375rem;
+  border: 2px solid hsl(154, 82%, 37%);
+  border-radius: 8px;
+  border-color: #1b330a;
+  border-width: 2px;
+  background-color: #a9d18e;
+  color: #1b330a;
+}
