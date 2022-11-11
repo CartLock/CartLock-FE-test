@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Axios = axios.create({
-baseURL: "http://182.77.62.52:3001/admin",
+baseURL: "https://main.d21yxttbe8c7wa.amplifyapp.com/admin",
  //baseURL: "http://localhost:3001/admin",
 });
 
