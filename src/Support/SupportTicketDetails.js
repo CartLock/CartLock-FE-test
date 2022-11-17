@@ -313,6 +313,32 @@ const SupportTicketDetails = (props) => {
                             </div>
                           </div>
                         </div>
+                         <Typography
+                          variant="subtitle2"
+                          gutterBottom
+                          className="mb-4 "
+                        ></Typography>
+                        <div className="row">
+                          <div className="col-md-6 row">
+                            <div className="col-md-4">
+                              <label className="adduserlabel" fullWidth>
+                                GPS
+                              </label>
+                            </div>
+                            <div className="col-md-8">
+                              <TextField
+                                id="fname"
+                                fullWidth
+                                name="firstName"
+                                value={supportTicketDetail.phone_gps}
+                                onChange=""
+                                onBlur=""
+                                error=""
+                                helperText=""
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     ) : (
                       <div>
@@ -468,6 +494,29 @@ const SupportTicketDetails = (props) => {
                                 onChange={""}
                                 error={""}
                                 helperText={""}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                         <div className="row">
+                          <div className="col-md-4 row"></div>
+                          <div className="col-md-2 row"></div>
+                          <div className="col-md-6 row">
+                            <div className="col-md-3">
+                              <label className="adduserlabel" fullWidth>
+                                GPS
+                              </label>
+                            </div>
+                            <div className="col-md-7">
+                              <TextField
+                                id="fname"
+                                fullWidth
+                                name="firstName"
+                                value={supportTicketDetail.phone_gps}
+                                onChange=""
+                                onBlur=""
+                                error=""
+                                helperText=""
                               />
                             </div>
                           </div>
