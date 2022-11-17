@@ -236,15 +236,26 @@ console.log("RoleName::::"+localStorage.getItem("roleName"))
 
       <div className="main">
         <h2 id="dashboard_home">Dashboard</h2>
-        <h3 style={{
-          color:" #1b330a",
-          fontStyle:"italic"
-        }}>Welcome {localStorage.getItem("displayName")}</h3>
-        
-         {/* <h3 style={{
-          color:" #1b330a",
-          fontStyle:"italic"
-        }}>{localStorage.getItem("companyName")}</h3> */}
+        {localStorage.getItem("roleName") == "Lockcart Administration" ? (
+            <h3
+              style={{
+                color: " #1b330a",
+                fontStyle: "italic",
+              }}
+            >
+              Welcome {localStorage.getItem("displayName")}
+            </h3>
+          ) : (
+            <h3
+              style={{
+                color: " #1b330a",
+                fontStyle: "italic",
+              }}
+            >
+              Welcome {localStorage.getItem("displayName")}(
+              {localStorage.getItem("roleName")})
+            </h3>
+          )}
         
 
 {localStorage.getItem("roleName")=="Lockcart Administration"?
