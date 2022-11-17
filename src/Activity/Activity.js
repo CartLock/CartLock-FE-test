@@ -62,7 +62,7 @@ const columns = [
   {
     field: 'operation_type',
     headerName: 'Operation Type',
-    width: 170,
+    width:220,
     renderHeader: () => (
       <strong>{'Operation Type'}</strong>
     // ),
@@ -85,7 +85,7 @@ const columns = [
   {
     field: 'gps_location',
     headerName: 'GPS Location',
-    width: 200,
+    width: 280,
     renderHeader: () => (
       <strong>{'GPS Location'}</strong>
     ),
@@ -96,7 +96,7 @@ const columns = [
   {
     field: 'summary',
     headerName: 'Summary',
-    width: 210,
+    width: 250,
     renderHeader: () => (
       <strong>{'Summary'}</strong>
     ),
