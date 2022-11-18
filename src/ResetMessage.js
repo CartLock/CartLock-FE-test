@@ -1,7 +1,7 @@
 import React from "react";
 
 export const ResetMessage = () => {
-  const link = `http://182.77.62.52:3000/login`;
+  const link = `http://3.209.221.175:3000/login`;
   return (
     <div>
       <body
