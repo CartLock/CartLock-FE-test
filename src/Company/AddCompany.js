@@ -519,78 +519,14 @@ const AddCompany = (props) => {
                       </div>
                     </div>
                     <div className="col-md-1 row"></div>
-                    <div className="col-md-3 row">
-                      <div className="col-md-7">
-                        <label className="adduserlabel" fullWidth>
-                          Waiting Hour
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-md-2 row">
-                      <TextField
-                        id="outlined-basic"
-                        label="hour"
-                        variant="outlined"
-                        size="small"
-                        inputProps={{
-                          maxlength: CHARACTER_LIMIT,
-                        }}
-                        name="hour"
-                        value={values.hour}
-                        onChange={handleChange("hour")}
-                        error={!!formValidation.hour}
-                        helperText={formValidation.hour}
-
-                        // the change is here
-                      />
-                    </div>
-                    <div
-                      className="col-md-1 row"
-                      style={{
-                        left: "10px",
-                        top: "5px",
-                      }}
-                    >
-                      :
-                    </div>
-
-                    <div
-                      className="col-md-2 row"
-                      style={{
-                        marginLeft: "-5%",
-                      }}
-                    >
-                      <TextField
-                        id="outlined-basic"
-                        label="min"
-                        variant="outlined"
-                        size="small"
-                        inputProps={{
-                          maxlength: CHARACTER_LIMIT,
-                        }}
-                        name="min"
-                        value={values.min}
-                        onChange={handleChange("min")}
-                        error={!!formValidation.min}
-                        helperText={formValidation.min}
-                      />
-                    </div>
-                  </div>
-                  {/* Giving white Space */}
-                  <Typography
-                    variant="subtitle2"
-                    gutterBottom
-                    className="mb-4 "
-                  ></Typography>
-
-                  <div className="row">
                     <div className="col-md-5 row">
-                      <div className="col-md-5">
+                      <div className="col-md-7">
                         <label className="adduserlabel" fullWidth>
                           Comapny Name
                         </label>
                       </div>
-                      <div className="col-md-7">
+
+                      <div className="col-md-5">
                         <TextField
                           id="company_name"
                           fullWidth
@@ -599,6 +535,66 @@ const AddCompany = (props) => {
                           onChange={handleChange("company_name")}
                           error={!!formValidation.company_name}
                           helperText={formValidation.company_name}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <Typography
+                    variant="subtitle2"
+                    gutterBottom
+                    className="mb-4 "
+                  ></Typography>
+
+                  <div className="row">
+                    <div className="col-md-6 row">
+                      <div className="col-md-3">
+                        <label className="adduserlabel" fullWidth>
+                          Waiting Hours
+                        </label>
+                      </div>
+                      <div className="col-md-4 row">
+                        <TextField
+                          id="outlined-basic"
+                          label="hour"
+                          variant="outlined"
+                          size="small"
+                          inputProps={{
+                            maxlength: CHARACTER_LIMIT,
+                          }}
+                          name="hour"
+                          value={values.hour}
+                          onChange={handleChange("hour")}
+                          error={!!formValidation.hour}
+                          helperText={formValidation.hour}
+
+                          // the change is here
+                        />
+                      </div>
+                      <div
+                        className="col-md-1 row"
+                        style={{
+                          left: "4px",
+                          top: "5px",
+                        }}
+                      >
+                        :
+                      </div>
+
+                      <div className="col-md-4 row">
+                        <TextField
+                          id="outlined-basic"
+                          label="min"
+                          variant="outlined"
+                          size="small"
+                          inputProps={{
+                            maxlength: CHARACTER_LIMIT,
+                          }}
+                          name="min"
+                          value={values.min}
+                          onChange={handleChange("min")}
+                          error={!!formValidation.min}
+                          helperText={formValidation.min}
                         />
                       </div>
                     </div>
