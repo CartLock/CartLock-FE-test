@@ -35,27 +35,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ModifyCompany = (props) => {
+  const CHARACTER_LIMIT = 2;
+
   const { enqueueSnackbar, error, success, loading } = props;
   const classes = useStyles();
   const { company_Details } = useSelector((state) => state.company);
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [formValidation, setFormValidation] = React.useState({
-    // company_name: "",
-    // poc_first_name: "",
-    // poc_last_name: "",
-    // company_e_mail: "",
-    // poc_phone_number: "",
-    // company_code: "",
-    // location: "",
-    // registratation_date: "",
-    // timezone: "",
-    // cart_fee: "",
-    // timing: "",
-    // payment_gateway: "",
-    // acc_no: "",
-
     //added by saurav
     company_code: "",
     location: "",
@@ -67,32 +54,68 @@ const ModifyCompany = (props) => {
     waiting_hour: "",
     payment_gateway: "",
     acc_no: "",
-    company_name:""
+    company_name: "",
+    hour: "",
+    min: "",
   });
 
   const handleValidation = () => {
     let isError = false;
     const formerr = { ...formValidation };
+    if (!company_Details.hour) {
+      isError = true;
+      formerr.hour = "Required Hour";
+      setFormValidation(formerr);
+      console.log("Req hour");
+    }
+    if (!company_Details.min) {
+      isError = true;
+      formerr.min = "Required min";
+      setFormValidation(formerr);
+    }
+    if (isNaN(company_Details.hour)) {
+      isError = true;
+      formerr.hour = "Enter valid Hours";
+      setFormValidation(formerr);
+    }
+    if (isNaN(company_Details.min)) {
+      isError = true;
+      formerr.min = "Enter valid min";
+      setFormValidation(formerr);
+    }
+    if (company_Details.hour && !isNaN(company_Details.hour)) {
+      if (company_Details.hour > 60) {
+        isError = true;
+        formerr.hour = "Enter valid Range";
+        setFormValidation(formerr);
+      }
+      if (company_Details.hour < 0) {
+        isError = true;
+        formerr.hour = "Enter valid Range";
+        setFormValidation(formerr);
+      }
+    }
+    if (company_Details.min && !isNaN(company_Details.min)) {
+      if (company_Details.min > 60) {
+        isError = true;
+        formerr.min = "Enter valid Range";
+        setFormValidation(formerr);
+      }
+      if (company_Details.min < 0) {
+        isError = true;
+        formerr.min = "Enter valid Range";
+        setFormValidation(formerr);
+      }
+    }
+
     if (!company_Details.company_code) {
       isError = true;
       formerr.company_code = "Required company code";
       setFormValidation(formerr);
     }
 
-    // if (!company_Details.poc_first_name) {
-    //   isError = true;
-    //   formerr.poc_first_name = "Required first name";
-    //   setFormValidation(formerr);
-    // }
-
-    // if (!company_Details.poc_last_name) {
-    //   isError = true;
-    //   formerr.poc_last_name = "Required last name";
-    //   setFormValidation(formerr);
-    // }
-
     if (!company_Details.company_e_mail) {
-      console.log("Email req")
+      console.log("Email req");
       isError = true;
       formerr.company_e_mail = "Required email";
       setFormValidation(formerr);
@@ -112,23 +135,18 @@ const ModifyCompany = (props) => {
       formerr.poc_phone_number = "Required telephone";
       setFormValidation(formerr);
     }
-    //  else if (company_Details.poc_phone_number.length < 10) {
-    //   isError = true;
-    //   formerr.poc_phone_number = "Telephone number at least 10 digits";
-    //   setFormValidation(formerr);
-    // }
     if (!company_Details.payment_cost) {
       isError = true;
       formerr.payment_cost = "Enter Payment Cost";
       setFormValidation(formerr);
     }
-  
-    if (isNaN(company_Details.payment_cost)) {  
+
+    if (isNaN(company_Details.payment_cost)) {
       isError = true;
       formerr.payment_cost = "Enter digit only";
       setFormValidation(formerr);
     }
-    if (!company_Details.company_name) {  
+    if (!company_Details.company_name) {
       isError = true;
       formerr.company_name = "Required Company Name";
       setFormValidation(formerr);
@@ -149,20 +167,12 @@ const ModifyCompany = (props) => {
   };
 
   const handleSubmitClick = (e, returnRequired) => {
-    console.log("Handle Submitclick")
-    console.log(handleValidation())
+    console.log("Handle Submitclick");
+    console.log(handleValidation());
     e.preventDefault();
     if (handleValidation()) return false;
 
     const Data = {
-      // id: company_Details.id,
-      // companyName: company_Details.company_name,
-      // POCFirstName: company_Details.poc_first_name,
-      // POCLastName: company_Details.poc_last_name,
-      // POCEmail: company_Details.poc_e_mail,
-      // POCPhoneNumber: company_Details.poc_phone_number,
-      // companyId: company_Details.company_id,
-      // isDeactive: company_Details.is_deactive ? "1" : "0",
       companyCode: company_Details.company_code,
       location: company_Details.location,
       companyEmail: company_Details.company_e_mail,
@@ -170,13 +180,14 @@ const ModifyCompany = (props) => {
       timezone: company_Details.timezone,
       POCPhoneNumber: company_Details.poc_phone_number,
       cartFee: company_Details.payment_cost,
-      timing: company_Details.waiting_hour,
+      timing: company_Details.hour + ":" + company_Details.min,
       paymentGateway: company_Details.payment_gateway,
       merchantAccNo: company_Details.acc_no,
       isDeactive: company_Details.is_deactive ? "1" : "0",
       id: company_Details.id,
-      companyName:company_Details.company_name
-      
+      companyName: company_Details.company_name,
+      hour: company_Details.hour,
+      min: company_Details.min,
     };
 
     dispatch(modifyCompany(Data));
@@ -234,7 +245,6 @@ const ModifyCompany = (props) => {
                   >
                     Update
                   </button>
-                 
                 </div>
 
                 <div className="card-header">
@@ -400,36 +410,70 @@ const ModifyCompany = (props) => {
                       </div>
                     </div>
                     <div className="col-md-1 row"></div>
-                    <div className="col-md-5 row">
+
+                    <div className="col-md-3 row">
                       <div className="col-md-7">
                         <label className="adduserlabel" fullWidth>
                           Waiting Hour
                         </label>
                       </div>
+                    </div>
+                    <div className="col-md-2 row">
+                      <TextField
+                        id="outlined-basic"
+                        variant="outlined"
+                        size="small"
+                        inputProps={{
+                          maxlength: CHARACTER_LIMIT,
+                        }}
+                        name="hour"
+                        value={company_Details.hour}
+                        onChange={handleChange("hour")}
+                        error={!!formValidation.hour}
+                        helperText={formValidation.hour}
+                        // the change is here
+                      />
+                    </div>
+                    <div
+                      className="col-md-1 row"
+                      style={{
+                        left: "10px",
+                        top: "5px",
+                      }}
+                    >
+                      :
+                    </div>
 
-                      <div className="col-md-5">
-                        <TextField
-                          type="time"
-                          id="waiting_hour"
-                          fullWidth
-                          name="tiwaiting_hourming"
-                          value={company_Details.waiting_hour}
-                          onChange={handleChange("waiting_hour")}
-                          error={!!formValidation.waiting_hour}
-                          helperText={formValidation.waiting_hour}
-                        />
-                      </div>
+                    <div
+                      className="col-md-2 row"
+                      style={{
+                        marginLeft: "-5%",
+                      }}
+                    >
+                      <TextField
+                        id="outlined-basic"
+                        variant="outlined"
+                        size="small"
+                        inputProps={{
+                          maxlength: CHARACTER_LIMIT,
+                        }}
+                        name="min"
+                        value={company_Details.min}
+                        onChange={handleChange("min")}
+                        error={!!formValidation.min}
+                        helperText={formValidation.min}
+                      />
                     </div>
                   </div>
-             {/* Giving white Space */}
-             <Typography
+                  {/* Giving white Space */}
+                  <Typography
                     variant="subtitle2"
                     gutterBottom
                     className="mb-4 "
-                  ></Typography>     
+                  ></Typography>
 
-<div className="row">
-<div className="col-md-5 row">
+                  <div className="row">
+                    <div className="col-md-5 row">
                       <div className="col-md-5">
                         <label className="adduserlabel" fullWidth>
                           Company Name
@@ -447,7 +491,7 @@ const ModifyCompany = (props) => {
                         />
                       </div>
                     </div>
-</div>
+                  </div>
 
                   {/* Giving white Space */}
                   <Typography
@@ -507,193 +551,23 @@ const ModifyCompany = (props) => {
                     </div>
                   </div>
                   <div className="row  isCompanyActiveRadio">
-                        <Box display="flex" alignItems="center">
-                          <Typography variant="subtitle2" >
-                            <strong>De-Active Company </strong>
-                          </Typography>
-                          <Switch
-                            color="secondary"
-                            checked={company_Details.is_deactive ? true : false}
-                            inputProps={{ "aria-label": "primary" }}
-                            name="is_deactive"
-                            onChange={handleChange("is_deactive")}
-                          />
-                        </Box>
-                      </div>
-
-                  {/* Old Code Goes Here */}
-
-                  {/* <div className="row">
-                    <div className="col-md-6 ">
-                      <div className="row">
-                        <div className="col-md-12">
-                          <TextField
-                            id="cname"
-                            fullWidth
-                            label="Company Name (required)"
-                            variant="outlined"
-                            name="company_name"
-                            value={company_Details.company_name}
-                            onChange={handleChange("company_name")}
-                            error={!!formValidation.company_name}
-                            helperText={formValidation.company_name}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="row mt-3">
-                        <div className="col-md-12">
-                          <Typography variant="subtitle2">
-                            <strong>Technical POC</strong>
-                          </Typography>
-                        </div>
-                      </div>
-
-                      <div className="row mt-1">
-                        <div className="col-md-12">
-                          <TextField
-                            id="lname"
-                            fullWidth
-                            label="Last Name (required)"
-                            variant="outlined"
-                            name="poc_last_name"
-                            value={company_Details.poc_last_name}
-                            onChange={handleChange("poc_last_name")}
-                            error={!!formValidation.poc_last_name}
-                            helperText={formValidation.poc_last_name}
-                          />
-                        </div>
-                      </div>
-                      <div className="row mt-3">
-                        <div className="col-md-12">
-                          <TextField
-                            id="fname"
-                            fullWidth
-                            label="First Name (required)"
-                            variant="outlined"
-                            name="poc_first_name"
-                            value={company_Details.poc_first_name}
-                            onChange={handleChange("poc_first_name")}
-                            error={!!formValidation.poc_first_name}
-                            helperText={formValidation.poc_first_name}
-                          />
-                        </div>
-                      </div>
-                      <div className="row mt-3">
-                        <div className="col-md-12">
-                          <TextField
-                            id="email"
-                            fullWidth
-                            label="E-Mail (required)"
-                            variant="outlined"
-                            name="poc_e_mail"
-                            value={company_Details.poc_e_mail}
-                            onChange={handleChange("poc_e_mail")}
-                            error={!!formValidation.poc_e_mail}
-                            helperText={formValidation.poc_e_mail}
-                          />
-                        </div>
-                      </div>
-                      <div className="row mt-3">
-                        <div className="col-md-12">
-                          <TextField
-                            id="telephone"
-                            fullWidth
-                            label="Telephone (required)"
-                            variant="outlined"
-                            name="poc_phone_number"
-                            value={company_Details.poc_phone_number}
-                            onChange={handleChange("poc_phone_number")}
-                            error={!!formValidation.poc_phone_number}
-                            helperText={formValidation.poc_phone_number}
-                          />
-                        </div>
-                      </div>
-                      <div className="row mt-3">
-                        <div className="col-md-12">
-                          <TextField
-                            InputProps={{
-                              readOnly: true,
-                            }}
-                            size="small"
-                            // fullWidth
-                            id="id"
-                            label="ID"
-                            variant="outlined"
-                            name="company_id"
-                            value={company_Details.company_id}
-                          />
-                        </div>
-                      </div>
-                      <div className="row mt-3">
-                        <div className="col-md-12">
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            onClick={handleSubmitClick}
-                          >
-                            Modify &nbsp;
-                            <i
-                              className="fa fa-spinner fa-spin"
-                              style={{
-                                display: props.loading ? "block" : "none",
-                              }}
-                            />
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-1 "></div>
-                    <div className="col-md-5 ">
-                      <div className="row">
-                        <Typography
-                          variant="subtitle2"
-                          style={{ textAlign: "justify", marginRight: 18 }}
-                        >
-                          <strong>
-                            Administrator’s Note: The Company Name along with
-                            the E-Mail address must be unique. It is allowable
-                            to have the same Company Name, but the e-mail
-                            addresses must be different. It is allowable to have
-                            multiple Company Names associated with one E-Mail
-                            address. It is not permitted to have a Company Name
-                            and E-Mail address pair match another.
-                          </strong>
-                        </Typography>
-                      </div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">&nbsp;</div>
-                      <div className="row">
-                        <Box display="flex" alignItems="center">
-                          <Typography variant="subtitle2">
-                            <strong>De-Active Compnay </strong>
-                          </Typography>
-                          <Switch
-                            color="primary"
-                            checked={company_Details.is_deactive ? true : false}
-                            inputProps={{ "aria-label": "primary" }}
-                            name="is_deactive"
-                            onChange={handleChange("is_deactive")}
-                          />
-                        </Box>
-                      </div>
-                    </div>
-                  </div> */}
+                    <Box display="flex" alignItems="center">
+                      <Typography variant="subtitle2">
+                        <strong>De-Active Company </strong>
+                      </Typography>
+                      <Switch
+                        color="secondary"
+                        checked={company_Details.is_deactive ? true : false}
+                        inputProps={{ "aria-label": "primary" }}
+                        name="is_deactive"
+                        onChange={handleChange("is_deactive")}
+                      />
+                    </Box>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* <Footer /> */}
         </div>
       </div>
     </>
