@@ -45,6 +45,7 @@ import HelpIcon from "@material-ui/icons/Help";
 import { makeStyles } from "@material-ui/core/styles";
 import "../App.css";
 import { useState } from "react";
+import { Instagram } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,13 +61,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddCompany = (props) => {
-  // const options = [
-  //   { value: "", text: "--Choose an option--" },
-  //   { value: "apple", text: "Apple 🍏" },
-  //   { value: "banana", text: "Banana 🍌" },
-  //   { value: "kiwi", text: "Kiwi 🥝" },
-  // ];
-  // const [selected, setSelected] = useState(options[0].value);
+  const CHARACTER_LIMIT = 2;
   var currencyValue;
   const { enqueueSnackbar, error, success } = props;
   const dispatch = useDispatch();
@@ -94,6 +89,8 @@ const AddCompany = (props) => {
     merchantAccount: "",
     registratationDate: "",
     currency: "",
+    hour: "",
+    min: "",
   });
 
   const [formValidation, setFormValidation] = React.useState({
@@ -113,7 +110,9 @@ const AddCompany = (props) => {
     paymentGateway: "",
     merchantAccount: "",
     registratationDate: "",
-    company_name:""
+    company_name: "",
+    hour: "",
+    min: "",
   });
 
   const handleValidation = () => {
@@ -157,8 +156,8 @@ const AddCompany = (props) => {
       formerr.cartFee = "Enter Payment Cost";
       setFormValidation(formerr);
     }
-  
-    if (isNaN(values.cartFee)) {  
+
+    if (isNaN(values.cartFee)) {
       isError = true;
       formerr.cartFee = "Enter digit only";
       setFormValidation(formerr);
@@ -190,7 +189,53 @@ const AddCompany = (props) => {
       setFormValidation(formerr);
     }
 
-
+    if (!values.hour) {
+      isError = true;
+      formerr.hour = "Required Hour";
+      setFormValidation(formerr);
+      console.log("Req hour");
+    }
+    if (!values.min) {
+      isError = true;
+      formerr.min = "Required min";
+      setFormValidation(formerr);
+    }
+    if (isNaN(values.hour)) {
+      isError = true;
+      formerr.hour = "Enter valid Hours";
+      setFormValidation(formerr);
+    }
+    if (isNaN(values.min)) {
+      isError = true;
+      formerr.min = "Enter valid min";
+      setFormValidation(formerr);
+    }
+    if (values.hour && !isNaN(values.hour)) {
+      console.log(values.hour);
+      if (values.hour > 60) {
+        isError = true;
+        formerr.hour = "Enter valid Range";
+        setFormValidation(formerr);
+      }
+      if (values.hour < 0) {
+        isError = true;
+        formerr.hour = "Enter valid Range";
+        setFormValidation(formerr);
+      }
+    }
+    if (values.min && !isNaN(values.min)) {
+      console.log(0 > values.min);
+      if (values.min > 60) {
+        isError = true;
+        formerr.min = "Enter valid Range";
+        setFormValidation(formerr);
+      }
+      if (values.min < 0) {
+        isError = true;
+        formerr.min = "Enter valid Range";
+        setFormValidation(formerr);
+      }
+    }
     return isError;
   };
 
@@ -204,11 +249,6 @@ const AddCompany = (props) => {
     formerr[event.target.name] = null;
     setFormValidation(formerr);
   };
-  // const handleSelectChange = (event) => {
-  //   console.log(event.target.value);
-  //   setSelected((prev) => (prev = event.target.value));
-  //   console.log("after setting the value::" + selected);
-  // };
 
   const [curr, setcurr] = useState();
   const handleChangeSchedule = (event, type) => {
@@ -236,16 +276,17 @@ const AddCompany = (props) => {
       timezone: values.timezone,
       POCPhoneNumber: values.poc_phone_number,
       cartFee: values.cartFee,
-      timing: values.timing,
+      timing: values.hour + ":" + values.min,
       paymentGateway: values.paymentGateway,
       merchantAccNo: values.merchantAccount,
       isDeactive: values.is_deactive ? "1" : "0",
       companyId: values.company_id,
       currency: "INR",
-      companyName:values.company_name
+      companyName: values.company_name,
+      hour: values.hour,
+      min: values.min,
     };
-    console.log("Request Data::::" + currencyValue);
-    dispatch(createCompany(Data,history));
+    dispatch(createCompany(Data, history));
   };
 
   useEffect(() => {
@@ -311,15 +352,6 @@ const AddCompany = (props) => {
                   >
                     Create Company
                   </button>
-                  {/* <button
-                    variant="contained"
-                    color="success"
-                    size="large"
-                    style={{ display: props.loading ? "block" : "none" }}
-                  >
-                    Create User &nbsp;
-                    <i className="fa fa-spinner fa-spin right" />
-                  </button> */}
                 </div>
 
                 <div className="card-header">
@@ -487,40 +519,75 @@ const AddCompany = (props) => {
                       </div>
                     </div>
                     <div className="col-md-1 row"></div>
-                    <div className="col-md-5 row">
+                    <div className="col-md-3 row">
                       <div className="col-md-7">
                         <label className="adduserlabel" fullWidth>
-                          Waiting Hours
+                          Waiting Hour
                         </label>
                       </div>
+                    </div>
+                    <div className="col-md-2 row">
+                      <TextField
+                        id="outlined-basic"
+                        label="hour"
+                        variant="outlined"
+                        size="small"
+                        inputProps={{
+                          maxlength: CHARACTER_LIMIT,
+                        }}
+                        name="hour"
+                        value={values.hour}
+                        onChange={handleChange("hour")}
+                        error={!!formValidation.hour}
+                        helperText={formValidation.hour}
 
-                      <div className="col-md-5">
-                        <TextField
-                          type="time"
-                          id="timing"
-                          fullWidth
-                          name="timing"
-                          value={values.timing}
-                          onChange={handleChange("timing")}
-                          error={!!formValidation.timing}
-                          helperText={formValidation.timing}
-                        />
-                      </div>
+                        // the change is here
+                      />
+                    </div>
+                    <div
+                      className="col-md-1 row"
+                      style={{
+                        left: "10px",
+                        top: "5px",
+                      }}
+                    >
+                      :
+                    </div>
+
+                    <div
+                      className="col-md-2 row"
+                      style={{
+                        marginLeft: "-5%",
+                      }}
+                    >
+                      <TextField
+                        id="outlined-basic"
+                        label="min"
+                        variant="outlined"
+                        size="small"
+                        inputProps={{
+                          maxlength: CHARACTER_LIMIT,
+                        }}
+                        name="min"
+                        value={values.min}
+                        onChange={handleChange("min")}
+                        error={!!formValidation.min}
+                        helperText={formValidation.min}
+                      />
                     </div>
                   </div>
-                   {/* Giving white Space */}
-                   <Typography
+                  {/* Giving white Space */}
+                  <Typography
                     variant="subtitle2"
                     gutterBottom
                     className="mb-4 "
                   ></Typography>
 
-
-<div className="row">
-<div className="col-md-5 row">
+                  <div className="row">
+                    <div className="col-md-5 row">
                       <div className="col-md-5">
                         <label className="adduserlabel" fullWidth>
-                        Comapny Name
+                          Comapny Name
                         </label>
                       </div>
                       <div className="col-md-7">
@@ -535,8 +602,7 @@ const AddCompany = (props) => {
                         />
                       </div>
                     </div>
-</div>
-
+                  </div>
 
                   {/* Adding currency  */}
 
