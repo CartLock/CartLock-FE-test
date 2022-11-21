@@ -394,6 +394,47 @@ const ModifyCompany = (props) => {
                     <div className="col-md-5 row">
                       <div className="col-md-5">
                         <label className="adduserlabel" fullWidth>
+                          Paymeny Cost
+                        </label>
+                      </div>
+                      <div className="col-md-7">
+                        <TextField
+                          id="cartfee"
+                          fullWidth
+                          name="payment_cost"
+                          value={company_Details.payment_cost}
+                          onChange={handleChange("payment_cost")}
+                          error={!!formValidation.payment_cost}
+                          helperText={formValidation.payment_cost}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-1 row"></div>
+                    <div className="col-md-5 row">
+                      <div className="col-md-7">
+                        <label className="adduserlabel" fullWidth>
+                          Company Name
+                        </label>
+                      </div>
+
+                      <div className="col-md-5">
+                        <TextField
+                          id="cartfee"
+                          fullWidth
+                          name="company_name"
+                          value={company_Details.company_name}
+                          onChange={handleChange("company_name")}
+                          error={!!formValidation.company_name}
+                          helperText={formValidation.company_name}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <div className="row">
+                    <div className="col-md-5 row">
+                      <div className="col-md-5">
+                        <label className="adduserlabel" fullWidth>
                           Payment Cost
                         </label>
                       </div>
@@ -464,7 +505,7 @@ const ModifyCompany = (props) => {
                         helperText={formValidation.min}
                       />
                     </div>
-                  </div>
+                  </div> */}
                   {/* Giving white Space */}
                   <Typography
                     variant="subtitle2"
@@ -473,21 +514,50 @@ const ModifyCompany = (props) => {
                   ></Typography>
 
                   <div className="row">
-                    <div className="col-md-5 row">
-                      <div className="col-md-5">
+                    <div className="col-md-6 row">
+                      <div className="col-md-4">
                         <label className="adduserlabel" fullWidth>
-                          Company Name
+                          Waiting Hours
                         </label>
                       </div>
-                      <div className="col-md-7">
+                      <div className="col-md-4 row">
                         <TextField
-                          id="cartfee"
-                          fullWidth
-                          name="company_name"
-                          value={company_Details.company_name}
-                          onChange={handleChange("company_name")}
-                          error={!!formValidation.company_name}
-                          helperText={formValidation.company_name}
+                          id="outlined-basic"
+                          variant="outlined"
+                          size="small"
+                          inputProps={{
+                            maxlength: CHARACTER_LIMIT,
+                          }}
+                          name="hour"
+                          value={company_Details.hour}
+                          onChange={handleChange("hour")}
+                          error={!!formValidation.hour}
+                          helperText={formValidation.hour}
+                        />
+                      </div>
+                      <div
+                        className="col-md-1 row"
+                        style={{
+                          left: "4px",
+                          top: "5px",
+                        }}
+                      >
+                        :
+                      </div>
+
+                      <div className="col-md-4 row">
+                        <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          size="small"
+                          inputProps={{
+                            maxlength: CHARACTER_LIMIT,
+                          }}
+                          name="min"
+                          value={company_Details.min}
+                          onChange={handleChange("min")}
+                          error={!!formValidation.min}
+                          helperText={formValidation.min}
                         />
                       </div>
                     </div>
